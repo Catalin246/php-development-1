@@ -1,3 +1,4 @@
+<?php require("script.php") ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +18,12 @@
             <input type="text" name="name" placeholder="Full name"><br><br>
             <label>Postal code:</label><br>
             <input type="text" name="postalcode" placeholder="Postal code">
-            <br><br>
+            <p style="color:red">
+                <?php
+                if (isset($errors['postal_code']))
+                    echo $errors['postal_code'];
+                ?>
+            </p>
             <label>Preferred language:</label><br>
             <select name="language"><br>
                 <option value="EN">English</option>
