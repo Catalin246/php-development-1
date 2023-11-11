@@ -3,7 +3,7 @@
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['name']) && isset($_POST['postalcode']) && isset($_POST['language'])) {
+    if (isset($_POST['name']) && isset($_POST['postalcode']) && isset($_POST['language']) && isset($_POST['options']) && is_array($_POST['options'])) {
         // Save the post valus in variables
         $name = $_POST['name'];
         $postal_code = $_POST['postalcode'];
@@ -26,6 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<p>Name: $name</p>";
             echo "<p>Post Code: $postal_code</p>";
             echo "<p>Language: $language</p>";
+            echo "<p>Extra option: ";
+            foreach ($_POST['options'] as $option) {
+                echo $option . ", ";
+            }
+            echo "</p>";
             echo '</div>';
         }
     }

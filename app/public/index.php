@@ -32,9 +32,9 @@
                 <option value="FR">French</option>
             </select><br><br>
             <label>Extra options:</label><br>
-            <input type="checkbox" name="options" value="Vegetarian"> Vegetarian<br>
-            <input type="checkbox" name="options" value="Gluten free"> Gluten free<br>
-            <input type="checkbox" name="options" value="Lactose free"> Lactose
+            <input type="checkbox" name="options[]" value="Vegetarian"> Vegetarian<br>
+            <input type="checkbox" name="options[]" value="Gluten free"> Gluten free<br>
+            <input type="checkbox" name="options[]" value="Lactose free"> Lactose
             free<br><br>
             <label>Remarks:</label><br>
             <textarea name="remarks" id="" cols="30" rows="10"></textarea><br><br>
