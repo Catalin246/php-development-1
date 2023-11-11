@@ -31,6 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo $option . ", ";
             }
             echo "</p>";
+            if (isset($_POST['remarks'])) {
+                // Use nl2br to convert newlines to <br> tags
+                $remarks = nl2br($_POST['remarks']);
+
+                echo "<p>Remarks: ";
+                echo "$remarks</p>";
+            }
             echo '</div>';
         }
     }
