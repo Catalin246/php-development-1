@@ -17,13 +17,6 @@
             <input type="text" name="name" placeholder="Full name"><br><br>
             <label>Postal code:</label><br>
             <input type="text" name="postalcode" placeholder="Postal code">
-
-            <?php if (!isset($errors['postal_code'])): ?>
-                <p style="color: red;">
-                    <?= $errors['postal_code'] ?>
-                </p>
-            <?php endif; ?>
-
             <br><br>
             <label>Preferred language:</label><br>
             <select name="language"><br>
@@ -41,41 +34,6 @@
             <textarea name="remarks" id="" cols="30" rows="10"></textarea><br><br>
             <input type="submit" value="Submit">
         </form>
-    </div>
-
-    <div class="container">
-        <?php
-
-        $errors = [];
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST['name']) && isset($_POST['postalcode']) && isset($_POST['language'])) {
-                // Save the post valus in variables
-                $name = $_POST['name'];
-                $postal_code = $_POST['postalcode'];
-                $language = $_POST['language'];
-
-                // Validate if the postal code is filled in
-                if (empty($postalCode)) {
-                    $errors['postal_code'] = 'Postal code is required.';
-                } else {
-                    // Validate the format of the postal code
-                    if (!preg_match('/^\d{4} [a-zA-Z]{2}$/', $postalCode)) {
-                        $errors['postal_code'] = 'Invalid postal code format. It should be 4 numbers, a space, and 2 letters.';
-                    }
-                }
-
-                if (empty($errors)) {
-                    // Display the form data
-                    echo "<h1>Form Results</h1>";
-                    echo "<p>Name: $name</p>";
-                    echo "<p>Post Code: $postal_code</p>";
-                    echo "<p>Language: $language</p>";
-                }
-            }
-        }
-
-        ?>
     </div>
 </body>
 
