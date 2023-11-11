@@ -1,0 +1,4 @@
+# In this assignment we are going to display form errors under every input field with php. 
+# I am going to have a simple validation, that will check for empty fields. If a field is empty 
+# the error message under it will be displayed. If both fields have values then a success message
+# will be displayed.
