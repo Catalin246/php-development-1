@@ -22,3 +22,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
+<div class="container">
+    <h1>Files in Uploads Folder</h1>
+
+    <?php
+
+    $uploadDir = "uploads/";
+
+    $files = scandir($uploadDir);
+
+    $files = array_diff($files, array('.', '..'));
+
+    foreach ($files as $file) {
+        echo "<p><a href='$uploadDir$file' download>$file</a></p>";
+    }
+
+    ?>
+</div>
