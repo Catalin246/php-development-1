@@ -1,3 +1,23 @@
+<?php
+
+require_once("dbconfig.php");
+
+try {
+    $connection = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connected successfully";
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+
+$sql = "SELECT * FROM posts";
+$results = $connection->query($sql);
+
+echo $results;
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,14 +32,20 @@
 
 <body>
     <div class="container">
-        <h1 class="pt-5">Upload Form</h1>
-        <form action="upload.php" method="post" enctype="multipart/form-data">
-            <label>Your name:</label><br>
-            <input type="text" name="name" placeholder="Full name" enctype="multipart/format-data"><br>
-            <label>File:</label><br>
-            <input type="file" name="file"><br><br>
-            <input type="submit" value="Submit">
-        </form>
+        <?php
+
+        $sql = "SELECT * FROM `posts`";
+        $results = $connection->query($sql);
+
+        foreach ($results as $result) {
+            echo $row['id'];
+            echo $row['name'];
+            echo $row['message'];
+            echo $row['ip_address'];
+            echo $row['posted_at'];
+        }
+
+        ?>
     </div>
 </body>
 
