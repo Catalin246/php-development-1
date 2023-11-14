@@ -56,6 +56,8 @@ try {
         <?php
 
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING); // Or you can sanitize your inputs one by one. For ex. you can sanitize your name $name = htmlspecialchars($_POST["name"])
+        
             $name = $_POST["name"];
             $message = $_POST["message"];
             $email = $_POST["email"];
