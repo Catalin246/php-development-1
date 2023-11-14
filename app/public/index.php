@@ -25,6 +25,12 @@ try {
 </head>
 
 <body>
+
+    <div class="container">
+        <a href="/">Home</a>
+        <a href="/add.php">Add Post</a>
+    </div>
+
     <div class="container">
         <h1 class="pt-5">Guestbook</h1>
         <?php
