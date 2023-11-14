@@ -1,3 +1,17 @@
+<?php
+
+require_once("dbconfig.php");
+
+try {
+    $connection = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //echo "Connected successfully";
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,14 +26,26 @@
 
 <body>
     <div class="container">
-        <h1 class="pt-5">Upload Form</h1>
-        <form action="upload.php" method="post" enctype="multipart/form-data">
-            <label>Your name:</label><br>
-            <input type="text" name="name" placeholder="Full name" enctype="multipart/format-data"><br>
-            <label>File:</label><br>
-            <input type="file" name="file"><br><br>
-            <input type="submit" value="Submit">
-        </form>
+        <h1 class="pt-5">Guestbook</h1>
+        <?php
+
+        $sql = "SELECT * FROM posts";
+        $result = $connection->query($sql);
+
+        foreach ($result as $row) {
+            echo '<div class="card mb-3">';
+            echo '  <div class="card-header">' . $row["name"] . '</div>';
+            echo '  <div class="card-body">';
+            echo '    <p class="card-text"><strong>ID:</strong> ' . $row["id"] . '</p>';
+            echo '    <p class="card-text"><strong>Message:</strong> ' . $row["message"] . '</p>';
+            echo '    <p class="card-text"><strong>IP Address:</strong> ' . $row["ip_address"] . '</p>';
+            echo '    <p class="card-text"><strong>Posted At:</strong> ' . $row["posted_at"] . '</p>';
+            echo '  </div>';
+            echo '</div>';
+        }
+
+
+        ?>
     </div>
 </body>
 
