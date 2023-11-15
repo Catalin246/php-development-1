@@ -46,6 +46,8 @@ try {
             echo '    <p class="card-text"><strong>Message:</strong> ' . $row["message"] . '</p>';
             echo '    <p class="card-text"><strong>IP Address:</strong> ' . $row["ip_address"] . '</p>';
             echo '    <p class="card-text"><strong>Posted At:</strong> ' . $row["posted_at"] . '</p>';
+            echo '    <a href="delete.php?id=' . $row["id"] . '" class="btn btn-danger">Delete</a>';
+            echo '    <a href="edit.php?id=' . $row["id"] . '" class="btn btn-primary">Edit</a>';
             echo '  </div>';
             echo '</div>';
         }

@@ -32,10 +32,19 @@ try {
     </div>
 
     <div class="container">
-        <h1>Write something in our Guesbook!</h1>
+        <h1>Edit the post with id:
+            <?php
+
+            if (isset($_GET['id'])) {
+                echo htmlspecialchars($_GET['id']);
+            }
+
+            ?>
+
+        </h1>
 
         <form action="" method="POST">
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" name="name" required />
             </div>
@@ -46,8 +55,8 @@ try {
             <div class="form-group">
                 <label for="message">Message</label>
                 <textarea class="form-control" name="message"></textarea>
-            </div>
-            <a href="/"><button type="submit" class="btn btn-primary my-4">Add Post</button></a>
+            </div> -->
+            <a href="/"><button type="submit" class="btn btn-primary my-4">Edit Post</button></a>
         </form>
     </div>
 
@@ -55,31 +64,26 @@ try {
 
         <?php
 
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $name = htmlspecialchars($_POST["name"]);
-            $message = htmlspecialchars($_POST["message"]);
-            $email = htmlspecialchars($_POST["email"]);
+        if (isset($_GET['id'])) {
+            $id = htmlspecialchars($_GET['id']);
 
-
-            try {
-                require_once("dbconfig.php");
-
-                $connection = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
-                $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                $sql = "INSERT INTO posts (name, message, ip_address, posted_at, email) VALUES (:name, :message, 123456789, now(), :email)";
-
-                $stmt = $connection->prepare($sql);
-                $stmt->bindParam(':name', $name);
-                $stmt->bindParam(':message', $message);
-                $stmt->bindParam(':email', $email);
-                $stmt->execute();
-
-            } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
-
-            $connection = null;
+            //$sql = "DELETE FROM posts WHERE id = :id";
+        
+            // try {
+            //     $stm = $connection->prepare($sql);
+            //     $stm->bindParam(':id', $id, PDO::PARAM_INT);
+        
+            //     if ($stm->execute()) {
+            //         header('Location: index.php');
+            //         exit();
+            //     } else {
+            //         echo "Something went wrong when you try to delete the post...";
+            //     }
+            // } catch (PDOException $e) {
+            //     echo "Error: " . $e->getMessage();
+            // }
+        } else {
+            echo "Invalid ID!";
         }
 
         ?>
