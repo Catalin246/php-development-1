@@ -2,6 +2,19 @@
 
 require_once("dbconfig.php");
 
+session_start();
+
+if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
+    header("Location: login.php");
+    exit();
+}
+
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header("Location: index.php");
+    exit();
+}
+
 try {
     $connection = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -26,8 +39,8 @@ try {
 <body>
 
     <div class="container">
-        <a href="/">Home</a>
-        <a href="/login.php">Log in</a>
+        <a href="/add.php">Add Post</a>
+        <a href="?logout=true">Logout</a>
     </div>
 
     <div class="container">
@@ -45,6 +58,8 @@ try {
             echo '    <p class="card-text"><strong>Message:</strong> ' . $row["message"] . '</p>';
             echo '    <p class="card-text"><strong>IP Address:</strong> ' . $row["ip_address"] . '</p>';
             echo '    <p class="card-text"><strong>Posted At:</strong> ' . $row["posted_at"] . '</p>';
+            echo '    <a href="delete.php?id=' . $row["id"] . '" class="btn btn-danger">Delete</a>';
+            echo '    <a href="edit.php?id=' . $row["id"] . '" class="btn btn-primary">Edit</a>';
             echo '  </div>';
             echo '</div>';
         }
