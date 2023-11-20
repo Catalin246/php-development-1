@@ -1,3 +1,15 @@
-div {
-    border: 1px solid black;
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap');
+
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+h1,
+h2 {
+    font-weight: 700;
+}
+
+img {
+    max-width: 115px;
+    max-height: 100px;
 }
