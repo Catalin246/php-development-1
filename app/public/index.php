@@ -36,25 +36,28 @@
             <div class="row">
                 <?php
                 require_once("fakeproducts.php");
-                foreach ($products as $product) {
-                    ?>
-                    <div class="col">
-                        <img src="<?= $product->image ?>" alt="<?= $product->title ?>">
-                        <p>
-                            <?= $product->title ?>
-                        </p>
-                        <p><small>
-                                <?= $product->category ?>
-                            </small></p>
-
-                        <span>
-                            <?= number_format($product->price, 2, '.') ?>
-                        </span>
-                        <button> + </button>
+                foreach ($products as $product): ?>
+                    <div class="col-4 card">
+                        <img src="<?= $product->image ?>" class="card-img-top" alt="<?= $product->title ?>">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <?= $product->title ?>
+                            </h5>
+                            <p class="card-text">
+                                <?= $product->description ?>
+                            </p>
+                            <div class="row">
+                                <p class="card-text">
+                                    <span>
+                                        <?= number_format($product->price, 2, '.') ?>
+                                    </span>
+                                </p>
+                                <button class="btn btn-primary">+</button>
+                            </div>
+                        </div>
                     </div>
-                    <?php
-                }
-                ?>
+                <?php endforeach; ?>
+
             </div>
     </section>
 
